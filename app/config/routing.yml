@@ -1,0 +1,14 @@
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+
+_besimple_soap:
+    resource: "@BeSimpleSoapBundle/Resources/config/routing/webservicecontroller.xml"
+    prefix: /ws

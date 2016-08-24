@@ -1,0 +1,169 @@
+{% extends '::front_layout.html.twig' %}
+
+ {% block cuenta %} class="active" {% endblock %}
+
+
+{% block body -%}
+    <h1><i class="fa fa-file-text-o"></i> Cuenta y Fondo de Viazul</h1>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Cuenta de Viazul</h3>
+                    {% if entities |length == 0 %}
+
+                        <div class="pull-right">
+                            <a href="{{ path('cuenta_new') }}" class="btn  btn-xs btn-primary">Adicionar</a>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Saldo</th>
+                                    <th>Nombre</th>
+                                    <th>Descipción</th>
+                                    <th  class="col-xs-1">Editar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for entity in entities %}
+                                    <tr>
+                                        <td>
+                                            {{ entity.saldo }}
+                                        </td>
+                                        <td>
+                                            {{ entity.nombre }}
+                                        </td>
+                                        <td>
+                                            {{ entity.descripcion }}
+                                        </td>
+                                        <td align="center">
+                                            <a href="{{ path('cuenta_edit', { 'id': entity.id }) }}"><i class="fa fa-edit"></i></a>
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                    <br/>
+                    <a class="btn btn-primary" id="trans" href="#" onclick='trans("{{ path('cuenta') }}")'><i class="fa fa-arrow-circle-o-right"></i>   Transferir a Fondo Viazul</a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Fondo de Viazul</h3>
+                    {% if entities |length == 0 %}
+
+                        <div class="pull-right">
+                            <a href="{{ path('cuenta_new') }}" class="btn  btn-xs btn-primary">Adicionar</a>
+                        </div>
+                    {% endif %}
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Saldo</th>
+                            <th>Nombre</th>
+                            <th>Descipción</th>
+                            <th  class="col-xs-1">Editar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>
+                                    {{ entity.saldo }}
+                                </td>
+                                <td>
+                                    {{ entity.nombre }}
+                                </td>
+                                <td>
+                                    {{ entity.descripcion }}
+                                </td>
+                                <td align="center">
+                                    <a href="{{ path('cuenta_edit', { 'id': entity.id }) }}"><i class="fa fa-edit"></i></a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+
+                    </table>
+                    <br/>
+                    <a href="" class="btn btn-success ">Ver Historial</a>
+
+
+
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div><!-- /.row -->
+
+
+{% endblock %}
+
+{% block javascripts %}
+        <script type="text/javascript">
+            $(function () {
+//                /* BOOTSTRAP SLIDER */
+//                $('.slider').slider();
+//
+//                /* ION SLIDER */
+//                $("#range_1").ionRangeSlider({
+//                    min: 0,
+//                    max: 5000,
+//                    from: 1000,
+//                    to: 4000,
+//                    type: 'double',
+//                    step: 1,
+//                    prefix: "$",
+//                    prettify: false,
+//                    hasGrid: true
+//                });
+//                $("#range_2").ionRangeSlider();
+
+                $("#range_5").ionRangeSlider({
+                    min: 0,
+                    max: 10,
+                    type: 'single',
+                    step: 0.1,
+                    postfix: " mm",
+                    prettify: false,
+                    hasGrid: true
+                });
+//                $("#range_6").ionRangeSlider({
+//                    min: -50,
+//                    max: 50,
+//                    from: 0,
+//                    type: 'single',
+//                    step: 1,
+//                    postfix: "°",
+//                    prettify: false,
+//                    hasGrid: true
+//                });
+//
+//                $("#range_4").ionRangeSlider({
+//                    type: "single",
+//                    step: 100,
+//                    postfix: " light years",
+//                    from: 55000,
+//                    hideMinMax: true,
+//                    hideFromTo: false
+//                });
+
+            });
+        </script>
+{% endblock %}

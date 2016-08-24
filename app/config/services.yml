@@ -1,0 +1,16 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+#services:
+#    app.ldap:
+#        : AppBundle\Controller\CuentaController
+
+parameters:
+    webservice_user_provider.class: AppBundle\Entity\WebserviceUserProvider
+
+services:
+    webservice_user_provider:
+        class: "%webservice_user_provider.class%"
+        arguments: [@service_container]

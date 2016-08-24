@@ -1,0 +1,52 @@
+security:
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        frontend:
+            pattern: ^/*
+            provider: chain_provider
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login_check
+                default_target_path: homepage
+            logout:
+                path: logout
+                target: login
+                invalidate_session: false
+            anonymous: ~
+
+
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        chain_provider:
+            chain:
+                providers:  [in_memory, webservice]
+
+        in_memory:
+            memory:
+                users:
+                    admin:
+                        password: "SJD8f3uu3IOQK55lb0OueFgPG9U="
+                        roles: [ 'ROLE_ADMIN' ]
+#        user_db:
+#            entity: { class: AppBundle\Entity\Usuario, property: usuario }
+
+        webservice:
+            id: webservice_user_provider
+
+    encoders:
+#        AppBundle\Entity\Usuario: sha1
+        Symfony\Component\Security\Core\User\User: sha1
+        AppBundle\Entity\WebserviceUser: plaintext
+
+
+    access_control:
+        - { path: ^/(login|ws/*), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/*, roles: [ROLE_USUARIO, ROLE_ADMIN] }

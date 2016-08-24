@@ -1,0 +1,30 @@
+{% extends '::front_layout.html.twig' %}
+
+ {% block nomencladores %} class="active" {% endblock %}
+ {% block causa %} class="active" {% endblock %}
+
+
+{% block body -%}
+    <h1><i class="fa fa-check-square"></i> Cuenta de Viazul</h1>
+
+    <div class="box box-solid box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Adicionar Causa</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        {{ form_start(form) }}
+        <div class="box-body">
+            {{ form_errors(form) }}
+            <div class="form-group">
+                {{ form_row(form.cuenta) }}
+            </div>
+        </div><!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+            <a class="btn btn-default" href="{{ path('homepage') }}">Cancelar</a>
+        </div>
+        {{ form_widget(form._token) }}
+        </form>
+    </div>
+{% endblock %}

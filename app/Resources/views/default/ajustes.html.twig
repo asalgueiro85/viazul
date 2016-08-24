@@ -1,0 +1,124 @@
+
+<!-- page script -->
+<script type="text/javascript">
+    $(function () {
+        $("#example1").dataTable();
+        $('#example2').dataTable({
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
+    });
+
+    //    Funcion para  mostrar el modal para eliminar
+    function eliminar($var) {
+        $('#confirm_dalete').attr("href", $var);
+        $('#delete_modal').modal('show');
+    }
+
+    //    Funcion para mostrar el modal para el cambiar contrasena
+    function cambiar($var) {
+        $('#confirm_cambio').attr("href", $var);
+        $('#cambio_modal').modal('show');
+    }
+
+    //    Funcion para mostrar el modal de transferencia de dinero a fondos de viazul
+    function trans($var) {
+        $('#confirm_dalete').attr("href", $var);
+        $('#trans_modal').modal('show');
+    }
+
+    //    scrips par aactivar el datapiker
+    $('#appbundle_bauche_fechaEmitido, #appbundle_prestamo_fecha, #appbundle_fecha_desde, #appbundle_fecha_hasta').datetimepicker({
+        lang:'es',
+        timepicker:false,
+        format:'Y-m-d'
+    });
+
+
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+    });
+
+    //    Scrips para activar el select2 de las etiquetas select
+    $("select").select2({
+        placeholder: "Seleccione una opción"
+//      minimumInputLength: 2
+    });
+
+    {#$("#appbundle_bauche_destino").select2({#}
+        {#allowClear: true,#}
+        {#placeholder: "Seleccione una opción",#}
+{#//        minimumInputLength: 3,#}
+        {#ajax: {#}
+            {#url: '{{ path("obtener_provincias") }}',#}
+            {#dataType: 'json',#}
+            {#quietMillis: 250,#}
+            {#data: function (term) {#}
+                {#return {#}
+                    {#q: term // search term#}
+                {#};#}
+            {#},#}
+            {#results: function (data) {#}
+                {#return {#}
+                    {#results: $.map(data, function (item) {#}
+                        {#return {#}
+                            {#text: item.NombreProvincia#}
+{#//                            id: item.IdProvincia#}
+
+                        {#}#}
+                    {#})#}
+                {#};#}
+            {#},#}
+            {#cache: true#}
+        {#},#}
+        {#initSelection: function (element, callback) {#}
+            {#var data = {IdProvincia: 1, NombreProvincia: "Pinar del Rio"};#}
+            {#callback(data);#}
+        {#}#}
+    {#});#}
+//
+//    function repoFormatResult(prov) {
+//        var markup = prov.NombreProvincia;
+//        return markup;
+//    }
+//
+//    function repoFormatSelection(prov) {
+//        return prov.NombreProvincia;
+//    }
+
+    {#//    Scrips para activar el select por ldap#}
+    {#$("#appbundle_bauche_destino").select2({#}
+        {#placeholder: {text: "Seleccione una opción"},#}
+{#//        minimumInputLength: 3,#}
+        {#ajax: {#}
+            {#url: '{{ path("obtener_provincias") }}',#}
+            {#dataType: 'json',#}
+            {#type: "GET",#}
+{#//            quietMillis: 20,#}
+            {#data: function (term) {#}
+                {#return {#}
+                    {#term: term#}
+
+                {#};#}
+            {#},#}
+//            results: function (data) {
+//                return {
+//                    results: $.map(data, function (item) {
+//                        return {
+//                            text: item.NombreProvincia,
+////                            id: item.IdProvincia
+//
+//                        }
+//                    })
+//                };
+//            }
+        {#}#}
+    {#});#}
+
+</script>
